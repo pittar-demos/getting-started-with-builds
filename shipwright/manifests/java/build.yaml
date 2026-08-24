@@ -11,7 +11,7 @@ spec:
     kind: ClusterBuildStrategy
     name: buildpacks
   output:
-    image: 'image-registry.openshift-image-registry.svc:5000/bptest/java-app'
+    image: 'image-registry.openshift-image-registry.svc:5000/java-build-demo/java-app'
   paramValues:
     - name: cnb-builder-image
       value: 'paketobuildpacks/builder-jammy-base:latest'
