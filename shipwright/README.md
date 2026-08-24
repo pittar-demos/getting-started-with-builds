@@ -17,7 +17,7 @@ The examples can be deployed with one CLI command each.  Once the initial builds
 #### NodeJS
 
 ```
-oc apply -k node
+oc apply -k manifests/node
 ```
 
 This will:
@@ -31,7 +31,7 @@ Once the build completes, you can manually scale the app deployment to 1.  Once 
 #### Java / Quarkus
 
 ```
-oc apply -k java
+oc apply -k manifests/java
 ```
 
 This will:
