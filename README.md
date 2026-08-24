@@ -33,3 +33,8 @@ metadata:
 spec:
   targetNamespace: openshift-builds
 ```
+
+## OpenShift Builds / Shipwright
+
+* [Demo Java and NodeJS builds with Shipwright](shipwright/README.md)
+* [Demo Java and NodeJS builds with Tekton](tekton/README.md)
