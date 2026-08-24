@@ -1,0 +1,7 @@
+apiVersion: shipwright.io/v1beta1
+kind: BuildRun
+metadata:
+  name: buildpack-java-first-run
+spec:
+  build:
+    name: buildpack-java-build

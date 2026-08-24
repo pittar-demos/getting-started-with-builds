@@ -1,0 +1,21 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: taxi-app
+    app.kubernetes.io/component: taxi-app
+    app.kubernetes.io/instance: taxi-app
+    app.kubernetes.io/name: taxi-app
+    app.kubernetes.io/part-of: taxi-app
+  name: taxi-app
+spec:
+  port:
+    targetPort: 3000-tcp
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: taxi-app
+    weight: 100
+  wildcardPolicy: None

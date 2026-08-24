@@ -1,0 +1,9 @@
+namespace: node-build-demo
+
+resources:
+  - namespace.yaml
+  - build.yaml
+  - build-run.yaml
+  - deploy.yaml
+  - svc.yaml
+  - route.yaml

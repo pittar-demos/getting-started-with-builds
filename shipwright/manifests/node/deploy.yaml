@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: taxi-app
+    app.kubernetes.io/component: taxi-app
+    app.kubernetes.io/instance: taxi-app
+    app.kubernetes.io/name: taxi-app
+    app.kubernetes.io/part-of: taxi-app
+    app.openshift.io/runtime: taxi-app
+    app.openshift.io/runtime-namespace: bptest
+    app.openshift.io/runtime-version: latest
+  name: taxi-app
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 0
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: taxi-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: taxi-app
+        deployment: taxi-app
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/node-build-demo/taxi-app:latest
+        name: taxi-app
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

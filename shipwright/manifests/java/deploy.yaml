@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: java-app
+    app.kubernetes.io/component: java-app
+    app.kubernetes.io/instance: java-app
+    app.kubernetes.io/name: java-app
+    app.kubernetes.io/part-of: java-app
+    app.openshift.io/runtime: java-app
+    app.openshift.io/runtime-namespace: bptest
+    app.openshift.io/runtime-version: latest
+  name: java-app
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 0
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: java-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: java-app
+        deployment: java-app
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/bptest/java-app:latest
+        name: java-app
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

@@ -1,0 +1,27 @@
+apiVersion: shipwright.io/v1beta1
+kind: Build
+metadata:
+  name: buildpack-java-build
+spec:
+  source:
+    git:
+      url: 'https://github.com/redhat-openshift-builds/samples.git'
+    type: Git
+  strategy:
+    kind: ClusterBuildStrategy
+    name: buildpacks
+  output:
+    image: 'image-registry.openshift-image-registry.svc:5000/bptest/java-app'
+  paramValues:
+    - name: cnb-builder-image
+      value: 'paketobuildpacks/builder-jammy-base:latest'
+    - name: run-image
+      value: 'paketobuildpacks/run-jammy-base:latest'
+    - name: source-subpath
+      value: buildpack/quarkus
+    - name: env-vars
+      values:
+        - value: BP_JVM_VERSION=21
+        - value: QUARKUS_PACKAGE_TYPE=uber-jar
+  retention:
+    atBuildDeletion: true
