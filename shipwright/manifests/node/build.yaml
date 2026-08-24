@@ -16,7 +16,7 @@ spec:
     - name: cnb-builder-image
       value: 'paketobuildpacks/builder-jammy-base:latest'
     - name: run-image
-      value: 'paketobuildpacks/run-jammy-base:latest'
+      value: 'paketobuildpacks/run-nodejs-20-ubi9-base:latest'
     - name: source-subpath
       value: buildpack/nodejs
   retention:
